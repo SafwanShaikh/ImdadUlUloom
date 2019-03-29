@@ -41,6 +41,8 @@ namespace ImdadUlUloom
             text.Text = student.StudentRegistrationNumber.RegistrationNumber.ToString();
             text = (TextObject)rpt.ReportDefinition.Sections["Section2"].ReportObjects["formNumBox"];
             text.Text = student.StudentDakhlaNumber.FormNumber.ToString();
+            text = (TextObject)rpt.ReportDefinition.Sections["Section2"].ReportObjects["dakhlaNumBox"];
+            text.Text = student.StudentDakhlaNumber.DakhlaNumber.ToString();
             text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["nameBox"];
             text.Text = student.StudentBasicInfo.NameStudent.ToString();
             text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["fnameBox"];
@@ -80,10 +82,20 @@ namespace ImdadUlUloom
             text.Text = student.StudentGuardianInfo.CnicGuardian.ToString();
             text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["relationGBox"];
             text.Text = student.StudentGuardianInfo.RelationGuardian.ToString();
-            text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["hifzBox"];
-            text.Text = student.StudentQawaif.Hifz == true ? "ہاں" : "نہیں";
-            text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["naziraBox"];
-            text.Text = student.StudentQawaif.Nazira == true ? "ہاں" : "نہیں";
+
+            if(student.StudentQawaif.Hifz == true)
+            {
+                text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["hifzBox"];
+                text.Text = "ہاں";
+            }
+
+            if(student.StudentQawaif.Nazira == true)
+            {
+                text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["naziraBox"];
+                text.Text = "ہاں";
+            }
+
+
             text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["nizamiBox"];
             text.Text = student.StudentQawaif.DarseNizami.ToString();
             text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["idaraBox"];
@@ -94,8 +106,8 @@ namespace ImdadUlUloom
             text.Text = student.StudentRihaish.Imdadi == true ? "ہاں" : "نہیں";
             text = (TextObject)rpt.ReportDefinition.Sections["Section3"].ReportObjects["rihaishiBox"];
             text.Text = student.StudentRihaish.Rihaish == true ? "ہاں" : "نہیں";
-            text = (TextObject)rpt.ReportDefinition.Sections["Section5"].ReportObjects["ikhrajBox"];
-            text.Text = student.StudentFormDate.IkhrajDate.ToString();
+            //text = (TextObject)rpt.ReportDefinition.Sections["Section5"].ReportObjects["ikhrajBox"];
+            //text.Text = student.StudentFormDate.IkhrajDate.ToString();
             text = (TextObject)rpt.ReportDefinition.Sections["Section5"].ReportObjects["takmeelBox"];
             text.Text = student.StudentFormDate.TakmeelDakhlaDate.ToString();
             crystalReportViewer1.ReportSource = rpt;
